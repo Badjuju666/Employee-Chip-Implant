@@ -7,7 +7,7 @@ let con = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'process.env.PASSWORD',
+    password: process.env.PASSWORD,
     database: 'emp_datab'
 });
 
@@ -18,7 +18,8 @@ function yourChoices() {
             name: 'choice',
             type: 'list',
             message: 'Main Menu: what do you need done?',
-            choices: ["View your departments", "View your roles", "View your employees", "Add your departments", "Add your roles", "Add your employee", "Update Employee Info", "All done!"]
+            choices: ["View your departments", "View your roles", "View your employees", 
+            "Add your departments", "Add your roles", "Add your employee", "Update Employee Info", "All done!"]
         }
     ]).then(response => {
         if (response.choice === "View your Departments"){
