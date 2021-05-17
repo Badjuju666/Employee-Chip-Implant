@@ -55,5 +55,5 @@
                 
 ![Imgofme](https://avatars.githubusercontent.com/u/74938789?v=4)
 - Julian Graves
-- Github Profile](https://github.com/Badjuju666)
+- [Github Profile](https://github.com/Badjuju666)
 - <juliangraves96@gmail.com>
