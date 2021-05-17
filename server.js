@@ -23,7 +23,7 @@ con.connect(function (err) {
         return;
     }
     con.query("SELECT * from employeetypes", function (error, res) {
-        speak2ManagerPlz = res.map(manager => ({ id: manager.manager_id, name: `${manager.first_name} ${manager.last_name}`, value: manager.id }))
+        speak2ManagerPlz = res.map(manager => ({ id: manager.id, name: `${manager.first_name} ${manager.last_name}`, value: manager.id }))
     })
     
     con.query("SELECT * from departmenttypes", function (error, res) {
@@ -66,16 +66,14 @@ function yourChoices() {
         } else if(response.choice === "Update Info."){
             updateEmpInfo();
         } else if(response.choice === "All done!"){
+              console.log('Thank You For Using!');
             process.exit();
         }
-        // } else if(response.choice === "Update Info."){
-        //     updateRole();
-        // }
-        console.log({response})
     })
 }
 
 //Department prompts
+
 function addD(){
     inquirer.prompt([
         {
@@ -92,6 +90,15 @@ function addD(){
         })
     })
 } 
+
+function tableD(){
+    con.query("SELECT * FROM departmenttypes;", (err, res)=>{
+        if(err) throw err;
+        console.table(res);
+        yourChoices();
+    })
+};
+
 
 //Role prompts
 function addR(){
@@ -121,6 +128,14 @@ function addR(){
     })
 }
 
+function tableR(){
+    con.query("SELECT * FROM roletypes;", (err, res) => {
+        if(err) throw err;
+        console.table(res)
+        yourChoices();
+    })
+};
+
 //Employee prompts
 function addE(){
     inquirer.prompt([
@@ -136,14 +151,16 @@ function addE(){
         },
         {
             name: 'roletype',
-            type: 'input',
-            message: 'Enter the Employees Role ID.'
+            type: 'list',
+            message: 'What is the Employees Role.',
+            choices: showRoles
+
         },
         {
             name: 'management',
             type: 'list',
             message: 'Enter the manager ID for this Employee.',
-            choices: showEmployees
+            choices: speak2ManagerPlz
         }
     ]).then(response => {
         con.query(`INSERT INTO employeetypes (first_name, last_name, role_id, manager_id) VALUES ('${response.firstname}', '${response.lastname}', '${response.roletype}', '${response.management}')`, (err, res)=>{
@@ -154,7 +171,14 @@ function addE(){
     })
 }
 
-//Update the Employees Info prompts
+function tableE(){
+    con.query("SELECT * FROM employeetypes;", (err, res) =>{
+        if(err) throw err;
+        console.table(res)
+        yourChoices();
+    })
+};
+
 function updateEmpInfo(){
     inquirer.prompt([
         {
@@ -166,7 +190,7 @@ function updateEmpInfo(){
         {
             name: 'roley',
             type: 'list',
-            message: 'What the new Role ID you wish to Update.',
+            message: 'What is their new Role?',
             choices: showRoles
         },
         {
@@ -185,29 +209,6 @@ function updateEmpInfo(){
     })
 }
 
-function tableD(){
-    con.query("SELECT * FROM departmenttypes;", (err, res)=>{
-        if(err) throw err;
-        console.table(res);
-        yourChoices();
-    })
-};
-
-function tableR(){
-    con.query("SELECT * FROM roletypes;", (err, res) => {
-        if(err) throw err;
-        console.table(res)
-        yourChoices();
-    })
-};
-
-function tableE(){
-    con.query("SELECT * FROM employeetypes;", (err, res) =>{
-        if(err) throw err;
-        console.table(res)
-        yourChoices();
-    })
-};
 
 yourChoices();
 

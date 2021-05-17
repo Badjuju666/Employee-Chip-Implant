@@ -18,5 +18,5 @@ INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES
 INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(5, "Otacon", "Emmerich", 5, NULL);
 INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(6, "Revolver", "Ocelot", 6, NULL);
 INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(7, "Raiden", "Jack", 7, 5);
-INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(8, "Liquid", "Snake", 6, NULL);
+INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(8, "Liquid", "Snake", 6, 2);
 INSERT INTO employeetypes(id, first_name, last_name, role_id, manager_id) VALUES(9, "Solid", "Snake", 7, 5);

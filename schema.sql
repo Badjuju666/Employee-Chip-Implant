@@ -9,7 +9,7 @@ CREATE TABLE departmenttypes (
 );
 
 CREATE TABLE roletypes (
-    id INTEGER(10) AUTO_INCREMENT NOT NULL,
+    id INTEGER(50) AUTO_INCREMENT NOT NULL,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL NOT NULL,
     department_id INTEGER(10) NOT NULL,
